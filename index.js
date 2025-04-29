@@ -11,11 +11,15 @@ const threadRoutes = require("./routes/thread");
 const messageRoutes = require("./routes/message");
 
 const app = express();
-app.use(
-  cors({
-    origin: "*", // Allows all origins
-  })
-);
+app.options("*", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.status(200).end();
+});
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/threads", threadRoutes);

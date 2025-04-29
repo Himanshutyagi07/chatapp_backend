@@ -16,4 +16,8 @@ router.post("/", async (req, res) => {
   res.json({ userId: user._id, username: user.username });
 });
 
+router.get("/", async (req, res) => {
+  res.json({ userId: "test" });
+});
+
 module.exports = router;
