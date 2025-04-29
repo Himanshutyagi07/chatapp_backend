@@ -1,5 +1,6 @@
 // server/index.js
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -10,7 +11,11 @@ const threadRoutes = require("./routes/thread");
 const messageRoutes = require("./routes/message");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allows all origins
+  })
+);
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/threads", threadRoutes);
